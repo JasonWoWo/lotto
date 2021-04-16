@@ -1,0 +1,26 @@
+{
+    "name":"olaf/lotto",
+    "description": "lotto for drawing",
+    "authors": [
+        {
+            "name":"JasonWoWo",
+            "email":"wenster_1900@163.com"
+        }
+    ],
+    "minimum-stability":"dev",
+    "require": {
+        "php": ">=7.0",
+        "ext-json": "*",
+        "illuminate/support": "~5.0",
+        "illuminate/console": "~5.0"
+    },
+    "require-dev": {
+        "illuminate/database": "~5.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Happy\\Lotto\\": "src/"
+        }
+    },
+    "prefer-stable":true
+}
