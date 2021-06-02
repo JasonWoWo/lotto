@@ -14,7 +14,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property $path_url 跳转下的url
  * @property $content 小程序介绍内容
  * @property $share_text 分享文案
- * @property $status 是否开启 1表示开启，2表示关闭
+ * @property $status 是否开启 1表示开启，0表示关闭
  * @property $self_support 是否自营
  * @property $description 赞助商介绍
  */

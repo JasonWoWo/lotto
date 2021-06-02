@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property $reward_num 中奖数量
  * @property $prize_id 奖品ID
  * @property $prize_name 奖品名称
+ * @property $uid 中奖用户ID
  * @property $username 中奖姓名
  * @property $nickname 中奖昵称
  * @property $avatar 头像
@@ -33,8 +34,8 @@ class RewardRecord extends Model
     protected $primaryKey = 'id';
 
     protected $fillable = [
-        'lotto_activity_id', 'project_id', 'project_name', 'reward_num', 'prize_id', 'prize_name',
+        'lotto_activity_id', 'project_id', 'project_name', 'reward_num', 'prize_id', 'prize_name', 'uid',
         'username', 'nickname', 'avatar', 'mobile', 'address', 'award_value',
-        'award_type', 'fast_status', 'fast_num'
+        'award_type', 'fast_status', 'fast_num', 'create_time', 'update_time'
     ];
 }

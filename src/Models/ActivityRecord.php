@@ -14,13 +14,21 @@ use Illuminate\Database\Eloquent\Model;
  */
 class ActivityRecord extends Model
 {
-    protected $table = 'lotto_prize_record';
+    const STATUS_NOT_HIT = 0;
+    const STATUS_SELECTED = 1;
+
+    protected $table = 'lotto_participate_record';
 
     public $timestamps = false;
+
+    public static $awardStatusMapping = [
+        self::STATUS_NOT_HIT => '未中奖',
+        self::STATUS_SELECTED => '中奖'
+    ];
 
     protected $primaryKey = 'id';
 
     protected $fillable = [
-        'lotto_activity_id', 'cost_score', 'status', 'create_time', 'update_time'
+        'lotto_activity_id', 'uid', 'cost_score', 'status', 'create_time'
     ];
 }

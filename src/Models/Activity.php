@@ -24,9 +24,17 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Activity extends Model
 {
+    const JOIN_LIMIT_ONCE = 1;
+    const JOIN_LIMIT_EVERYDAY = 2;
+
     protected $table = 'lotto_activity';
 
     public $timestamps = false;
+
+    public static $joinLimitMapping = [
+        self::JOIN_LIMIT_ONCE => '用户只能参加一次',
+        self::JOIN_LIMIT_EVERYDAY => '用户每天可以参加一次'
+    ];
 
     protected $primaryKey = 'id';
 

@@ -16,6 +16,10 @@ use Illuminate\Database\Eloquent\Model;
  * @property $show_num 展示数量
  * @property $prize_type 奖品类型 1表示实物，2表示虚拟
  * @property $virtual_label
+ * @property $sort 优先级
+ * @property $create_time 创建时间
+ * @property $update_time 更新时间
+ * @property $delete_time 删除时间
  */
 class ActivityConfig extends Model
 {
@@ -27,6 +31,6 @@ class ActivityConfig extends Model
 
     protected $fillable = [
         'prize_id', 'lotto_activity_id', 'prize_num', 'award_desc',
-        'show_num', 'prize_type', 'virtual_label'
+        'show_num', 'prize_type', 'virtual_label', 'sort', 'create_time', 'update_time', 'delete_time'
     ];
 }
