@@ -135,3 +135,392 @@ CREATE TABLE `lotto_sponsor` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='抽奖活动赞助商';
 
 ```
+
+#### 4.接口服务
+
+##### 4.1 活动列表
+
+```bash
+Method:   GET  
+
+URI:      /lotto/activities
+
+Auth:     Off // 开启用户授权
+```
+
+**请求说明**
+
+**响应说明**
+
+```json
+{
+    "code":200,
+    "message":"业务受理成功",
+    "data":{
+        "activities":[
+            {
+                "id":1,
+                "title":"抽奖活动",
+                "start_time":1622455200,
+                "draw_time":1622973600,
+                "is_participate":0,
+                "sponsor_name":"乐趣够",
+                "image_url":"/storage/public/",
+                "prize_items":[
+                    {
+                        "id":1,
+                        "lotto_activity_id":1,
+                        "prize_id":1,
+                        "prize_num":1,
+                        "award_desc":"一等奖",
+                        "show_num":10,
+                        "prize_type":1,
+                        "virtual_label":"",
+                        "sort":100,
+                        "create_time":"2021-06-01 14:21:54",
+                        "update_time":"2021-06-01 14:21:54",
+                        "delete_time":null,
+                        "name":"超级飞侠多利",
+                        "image_url":"/storage/public/",
+                        "sku_id":19211,
+                        "sku_name":"超级飞侠"
+                    },
+                    {
+                        "id":2,
+                        "lotto_activity_id":1,
+                        "prize_id":2,
+                        "prize_num":1,
+                        "award_desc":"二等奖",
+                        "show_num":10,
+                        "prize_type":1,
+                        "virtual_label":"",
+                        "sort":100,
+                        "create_time":"2021-06-01 14:21:54",
+                        "update_time":"2021-06-01 14:21:54",
+                        "delete_time":null,
+                        "name":"超级飞侠小金子",
+                        "image_url":"/storage/public/",
+                        "sku_id":19212,
+                        "sku_name":"超级飞侠"
+                    },
+                    {
+                        "id":3,
+                        "lotto_activity_id":1,
+                        "prize_id":3,
+                        "prize_num":1,
+                        "award_desc":"三等奖",
+                        "show_num":10,
+                        "prize_type":1,
+                        "virtual_label":"",
+                        "sort":100,
+                        "create_time":"2021-06-01 14:21:54",
+                        "update_time":"2021-06-01 14:21:54",
+                        "delete_time":null,
+                        "name":"超级飞侠小雷霆",
+                        "image_url":"/storage/public/",
+                        "sku_id":19213,
+                        "sku_name":"超级飞侠"
+                    }
+                ]
+            },
+            {
+                "id":2,
+                "title":"儿童节抽奖活动",
+                "start_time":1622458800,
+                "draw_time":1623232800,
+                "is_participate":0,
+                "sponsor_name":"乐趣够",
+                "image_url":"/storage/public/",
+                "prize_items":[
+                    {
+                        "id":1,
+                        "lotto_activity_id":2,
+                        "prize_id":1,
+                        "prize_num":1,
+                        "award_desc":"一等奖",
+                        "show_num":10,
+                        "prize_type":1,
+                        "virtual_label":"",
+                        "sort":100,
+                        "create_time":"2021-06-01 14:21:54",
+                        "update_time":"2021-06-01 14:21:54",
+                        "delete_time":null,
+                        "name":"超级飞侠多利",
+                        "image_url":"/storage/public/",
+                        "sku_id":19211,
+                        "sku_name":"超级飞侠"
+                    },
+                    {
+                        "id":2,
+                        "lotto_activity_id":2,
+                        "prize_id":2,
+                        "prize_num":1,
+                        "award_desc":"二等奖",
+                        "show_num":10,
+                        "prize_type":1,
+                        "virtual_label":"",
+                        "sort":100,
+                        "create_time":"2021-06-01 14:21:54",
+                        "update_time":"2021-06-01 14:21:54",
+                        "delete_time":null,
+                        "name":"超级飞侠小金子",
+                        "image_url":"/storage/public/",
+                        "sku_id":19212,
+                        "sku_name":"超级飞侠"
+                    },
+                    {
+                        "id":3,
+                        "lotto_activity_id":2,
+                        "prize_id":3,
+                        "prize_num":1,
+                        "award_desc":"三等奖",
+                        "show_num":10,
+                        "prize_type":1,
+                        "virtual_label":"",
+                        "sort":100,
+                        "create_time":"2021-06-01 14:21:54",
+                        "update_time":"2021-06-01 14:21:54",
+                        "delete_time":null,
+                        "name":"超级飞侠小雷霆",
+                        "image_url":"/storage/public/",
+                        "sku_id":19213,
+                        "sku_name":"超级飞侠"
+                    }
+                ]
+            }
+        ]
+    }
+}
+```
+
+##### 4.2 活动详情
+
+```bash
+
+Method:  GET  
+
+URI:     /lotto/detail?activityId={1}
+
+Auth:    Off // 开启用户授权
+```
+
+**请求参数**
+
+**响应参数**
+
+```json
+{
+    "code":200,
+    "message":"业务受理成功",
+    "data":{
+        "id":1,
+        "start_time":1622455200,
+        "draw_time":1622973600,
+        "prize_items":[
+            {
+                "id":1,
+                "lotto_activity_id":1,
+                "prize_id":1,
+                "prize_num":1,
+                "award_desc":"一等奖",
+                "show_num":10,
+                "prize_type":1,
+                "virtual_label":"",
+                "sort":100,
+                "create_time":"2021-06-01 14:21:54",
+                "update_time":"2021-06-01 14:21:54",
+                "delete_time":null,
+                "name":"超级飞侠多利",
+                "image_url":"/storage/public/",
+                "sku_id":19211,
+                "sku_name":"超级飞侠"
+            },
+            {
+                "id":2,
+                "lotto_activity_id":1,
+                "prize_id":2,
+                "prize_num":1,
+                "award_desc":"二等奖",
+                "show_num":10,
+                "prize_type":1,
+                "virtual_label":"",
+                "sort":100,
+                "create_time":"2021-06-01 14:21:54",
+                "update_time":"2021-06-01 14:21:54",
+                "delete_time":null,
+                "name":"超级飞侠小金子",
+                "image_url":"/storage/public/",
+                "sku_id":19212,
+                "sku_name":"超级飞侠"
+            },
+            {
+                "id":3,
+                "lotto_activity_id":1,
+                "prize_id":3,
+                "prize_num":1,
+                "award_desc":"三等奖",
+                "show_num":10,
+                "prize_type":1,
+                "virtual_label":"",
+                "sort":100,
+                "create_time":"2021-06-01 14:21:54",
+                "update_time":"2021-06-01 14:21:54",
+                "delete_time":null,
+                "name":"超级飞侠小雷霆",
+                "image_url":"/storage/public/",
+                "sku_id":19213,
+                "sku_name":"超级飞侠"
+            }
+        ],
+        "is_participate":0,
+        "image_url":"",
+        "sponsor_name":"乐趣够",
+        "sponsor_status":1,
+        "ali_mini_id":"wx1029837392deid",
+        "ali_mini_url":"pages/through-index/index",
+        "ali_mini_content":"有趣的抽奖平台",
+        "ali_mini_turn_text":"share",
+        "ali_life_id":"",
+        "sponsor_detail":"funny go"
+    }
+}
+```
+
+##### 4.3 活动参与概览
+
+```bash
+
+Method:  GET  
+
+URI:     /lotto/summary?activityId={1}
+
+Auth:    On // 开启用户授权
+```
+
+**请求参数**
+
+**响应参数**
+
+```json
+{
+    "code":200,
+    "message":"业务受理成功",
+    "data":{
+        "username":"J****",
+        "nickname":"J****",
+        "address":"",
+        "turn_url":"",
+        "turn_img":"",
+        "prize_name":"超级飞侠多利",
+        "prize_url":"/storage/public/",
+        "prize_num":1,
+        "avatar":"/storage/public",
+        "mobile":"18986299220",
+        "fast_status":1,
+        "is_lucky":0,
+        "virtual_or_physical":"",
+        "red_amount":0.11
+    }
+}
+```
+
+##### 4.4 抽奖活动的中奖列表
+
+```bash
+
+Method:  GET  
+
+URI:     /lotto/rewards
+
+Auth:    On // 开启用户授权
+```
+
+**请求参数**
+
+**响应参数**
+
+```json
+{
+    "code":200,
+    "message":"业务受理成功",
+    "data":{
+        "total_counts":1,
+        "items":[
+            {
+                "id":1,
+                "fast_status":1,
+                "draw_time":"06-06",
+                "prize_name":"超级飞侠多利"
+            }
+        ]
+    }
+}
+```
+
+##### 4.5 抽奖活动的参与记录
+
+```bash
+
+Method:  GET  
+
+URI:     /lotto/participation
+
+Auth:    On // 开启用户授权
+```
+
+**请求参数**
+
+**响应参数**
+
+```json
+{
+    "code":200,
+    "message":"业务受理成功",
+    "data":{
+        "items":[
+            {
+                "id":1,
+                "start_time":"2021-05-31 10:00:00",
+                "draw_time":"2021-06-06 10:00:00",
+                "image_url":"/storage/public/",
+                "is_over":0,
+                "prize_items":[
+                    {
+                        "prize_id":1,
+                        "prize_num":10,
+                        "prize_name":"超级飞侠多利",
+                        "virtual_or_physical":1
+                    },
+                    {
+                        "prize_id":3,
+                        "prize_num":10,
+                        "prize_name":"超级飞侠小雷霆",
+                        "virtual_or_physical":1
+                    },
+                    {
+                        "prize_id":2,
+                        "prize_num":10,
+                        "prize_name":"超级飞侠小金子",
+                        "virtual_or_physical":1
+                    }
+                ]
+            }
+        ]
+    }
+}
+```
+
+##### 4.6 参与抽奖活动
+
+```bash
+
+Method:  POST  
+
+URI:     /lotto/take
+
+Auth:    On // 开启用户授权
+```
+
+**请求参数**
+
+**响应参数**
