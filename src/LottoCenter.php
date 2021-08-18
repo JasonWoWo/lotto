@@ -17,6 +17,7 @@ class LottoCenter
     }
 
     /**
+     * TODO lucky_activity
      * 获取活动列表
      * @param int | null uid
      * @param int $page
@@ -29,6 +30,7 @@ class LottoCenter
     }
 
     /**
+     * TODO activity_info
      * 获取活动的详情
      * @param int $activityId
      * @param int | null $uid
@@ -40,6 +42,7 @@ class LottoCenter
     }
 
     /**
+     * TODO prize_detail
      * 获取活动的详情的参与信息汇总
      * @param int $activityId
      * @param int $uid
@@ -51,6 +54,7 @@ class LottoCenter
     }
 
     /**
+     * TODO partake_prize
      * 参与抽奖活动报名, 积分扣除系统需要在外层处理
      * @param int $uid
      * @param int $activityId
@@ -75,6 +79,7 @@ class LottoCenter
     }
 
     /**
+     * TODO my_prize_list
      * 抽奖活动的参与记录信息列表
      * @param $uid
      * @return array
@@ -85,6 +90,7 @@ class LottoCenter
     }
 
     /**
+     * TODO my_prize_select
      * 抽奖活动的中奖记录信息列表
      * @param $uid
      * @param $page
@@ -94,5 +100,16 @@ class LottoCenter
     public function getRewardItems($uid, $page = 1, $limit = 10)
     {
         return $this->lottoService->fetchRewardItems($uid, $page, $limit);
+    }
+
+    /**
+     * TODO my_prize_num
+     * 个人中心下 参与中奖、中奖记录、未领奖的数据统计
+     * @param $uid
+     * @return array
+     */
+    public function fetchMyLottoSummary($uid)
+    {
+        return $this->lottoService->fetchLottoSummary($uid);
     }
 }

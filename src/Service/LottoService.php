@@ -51,7 +51,7 @@ class LottoService extends BaseService
             $detail['id'] = $item['id'];
             $detail['title'] = $item['title'];
             $detail['start_time'] = strtotime($item['start_time']);
-            $detail['draw_time'] = strtotime($item['draw_time']);
+            $detail['draw_time'] = $item['draw_time'];
             $detail['is_participate'] = in_array($item['id'], $participationActivityIds) ? 1 : 0;
             $detail['sponsor_name'] = '';
             $sponsorEntity = Sponsor::query()->where('id', $item['sponsor_id'])->first();
@@ -97,8 +97,11 @@ class LottoService extends BaseService
         $detailInfo = [
             'id' => $activity['id'],
             'start_time' => strtotime($activity['start_time']),
-            'draw_time' => strtotime($activity['draw_time']),
+            'draw_time' => $activity['draw_time'],
             'prize_items' => [],
+            'join_num' => $activity['join_num'],
+            'show_num' => $activity['show_num'],
+            'cost_score' => $activity['cost_score'],
             'is_participate' => $isParticipate,
             'image_url' => '',
             'sponsor_name' => '', // 赞助商名称
@@ -109,6 +112,7 @@ class LottoService extends BaseService
             'ali_mini_turn_text' => '', // 阿里小程序跳转按钮文案介绍
             'ali_life_id' => '', // 赞助商生活号AppId
             'sponsor_detail' => '', // 赞助商介绍
+            'description' => '', // 福利说明
         ];
         $detailInfo['prize_items'] = $this->getPrizeEntities($activity['id']);
         $sponsorEntity = Sponsor::query()->where('id', $activity['sponsor_id'])->first();
@@ -319,6 +323,31 @@ class LottoService extends BaseService
         $this->data['items'] = $rewardItems;
 
         return $this->pipeline();
+    }
+
+    public function fetchLottoSummary($uid)
+    {
+        $this->data = [
+            'participates' => 0,
+            'bingo' => 0,
+            'unclaimed' => 0
+        ];
+        $builder = ActivityRecord::query()->where('uid', $uid);
+
+        $participateItems = $builder->selectRaw('uid, lotto_activity_id')->groupBy(['uid', 'lotto_activity_id'])->get();
+
+        if (empty($participateItems)) {
+            return $this->pipeline();
+        }
+
+        $bingoCount = $builder->where('status', ActivityRecord::STATUS_SELECTED)->count();
+
+        $unclaimedCount = RewardRecord::query()->where('uid', $uid)
+            ->where('fast_status', RewardRecord::DELIVERY_OFF)->count();
+        $this->data['participates'] = count($participateItems);
+        $this->data['bingo'] = $bingoCount;
+        $this->data['unclaimed'] = $unclaimedCount;
+
     }
 
     /**

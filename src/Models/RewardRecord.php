@@ -23,7 +23,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property $award_type 类型 1表示实物，2表示虚拟
  * @property $award_value 虚拟中奖金额
  * @property $fast_num 中奖商品快递单号信息
- * @property $fast_status 中奖商品发放状态
+ * @property $fast_status 中奖商品发放状态 0表示未发货 1表示已发货
  */
 class RewardRecord extends Model
 {
@@ -32,6 +32,14 @@ class RewardRecord extends Model
     public $timestamps = false;
 
     protected $primaryKey = 'id';
+
+    const DELIVERY_ON = 1;
+    const DELIVERY_OFF = 0;
+
+    public static $deliveryStatus = [
+        self::DELIVERY_OFF => '未发货',
+        self::DELIVERY_ON => '已发货'
+    ];
 
     protected $fillable = [
         'lotto_activity_id', 'project_id', 'project_name', 'reward_num', 'prize_id', 'prize_name', 'uid',

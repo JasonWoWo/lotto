@@ -160,12 +160,12 @@ Auth:     Off // 开启用户授权
         "activities":[
             {
                 "id":1,
-                "title":"抽奖活动",
-                "start_time":1622455200,
-                "draw_time":1622973600,
+                "title": "抽奖活动",
+                "start_time": 1622455200,
+                "draw_time": "2021-08-24 10:36:10",
                 "is_participate":0,
                 "sponsor_name":"乐趣够",
-                "image_url":"/storage/public/",
+                "image_url":"https://img.zcool.cn/community/01030f60dc6a8311013f4720735fb9.jpg@2o.jpg",
                 "prize_items":[
                     {
                         "id":1,
@@ -227,7 +227,7 @@ Auth:     Off // 开启用户授权
                 "id":2,
                 "title":"儿童节抽奖活动",
                 "start_time":1622458800,
-                "draw_time":1623232800,
+                "draw_time": "2021-08-19 18:28:20",
                 "is_participate":0,
                 "sponsor_name":"乐趣够",
                 "image_url":"/storage/public/",
@@ -379,14 +379,17 @@ Auth:    Off // 开启用户授权
         "ali_mini_id":"wx1029837392deid",
         "ali_mini_url":"pages/through-index/index",
         "ali_mini_content":"有趣的抽奖平台",
-        "ali_mini_turn_text":"share",
+        "ali_mini_turn_text":"马上抢",
         "ali_life_id":"",
-        "sponsor_detail":"funny go"
+        "sponsor_detail":"funny go",
+        "description": ""
     }
 }
 ```
 
 ##### 4.3 活动参与概览
+
+参与活动在开奖之后，获取中奖的信息概览
 
 ```bash
 
