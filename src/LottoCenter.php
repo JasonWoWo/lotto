@@ -67,15 +67,14 @@ class LottoCenter
     }
 
     /**
-     * 抽奖活动的领奖动作
+     * TODO 虚拟抽奖活动的领奖动作
      * @param int $activityId
      * @param int $uid
-     * @param int $totalScore
      * @return array
      */
-    public function takePrize($activityId, $uid, $totalScore)
+    public function takePrize($activityId, $uid)
     {
-        return $this->lottoService->takePartInActivity($uid, $activityId, $totalScore);
+        return $this->lottoService->awardPrize($uid, $activityId);
     }
 
     /**

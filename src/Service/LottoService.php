@@ -82,7 +82,9 @@ class LottoService extends BaseService
     public function fetchActivityDetail($activityId, $uid = null)
     {
         /** @var Activity $activityEntity */
-        $activityEntity = Activity::query()->selectRaw('*')->where('id', $activityId)->first();
+        $activityEntity = Activity::query()->selectRaw('*')->where('id', $activityId)
+            ->where('start_time', '<=', date('Y-m-d H:i:s'))
+            ->where('draw_time', '>=', date('Y-m-d H:i:s'))->first();
         if (is_null($activityEntity)) {
             $this->status = self::STATUS_FAIL;
             $this->message = '未获取到活动的信息';
@@ -347,6 +349,8 @@ class LottoService extends BaseService
         $this->data['participates'] = count($participateItems);
         $this->data['bingo'] = $bingoCount;
         $this->data['unclaimed'] = $unclaimedCount;
+
+        return $this->pipeline();
 
     }
 
