@@ -82,9 +82,7 @@ class LottoService extends BaseService
     public function fetchActivityDetail($activityId, $uid = null)
     {
         /** @var Activity $activityEntity */
-        $activityEntity = Activity::query()->selectRaw('*')->where('id', $activityId)
-            ->where('start_time', '<=', date('Y-m-d H:i:s'))
-            ->where('draw_time', '>=', date('Y-m-d H:i:s'))->first();
+        $activityEntity = Activity::query()->selectRaw('*')->where('id', $activityId)->first();
         if (is_null($activityEntity)) {
             $this->status = self::STATUS_FAIL;
             $this->message = '未获取到活动的信息';
@@ -140,10 +138,11 @@ class LottoService extends BaseService
             ->where('status', ActivityRecord::STATUS_SELECTED);
         $builderClone = clone $builder;
         $isSelected = $builderClone->where('uid', $uid)->exists();
-        $bingo = [];
         if (!$isSelected) {
             $recordEntity = $builder->orderBy('id', 'ASC')->first();
             $bingo = $recordEntity->toArray();
+        } else {
+            $bingo = $builder->where('uid', $uid)->first()->toArray();
         }
         if (empty($bingo)) {
             $this->status = self::STATUS_FAIL;
@@ -182,7 +181,7 @@ class LottoService extends BaseService
             'fast_status' => $bingoPrize['fast_status'],
             'is_lucky' => $isSelected ? 1 : 0,
             'virtual_or_physical' => '',
-            'red_amount' => 0.11
+            'red_amount' => 0
         ];
 
         $this->data = $bingoInfo;
