@@ -114,7 +114,7 @@ class LottoService extends BaseService
             'ali_mini_turn_text' => '', // 阿里小程序跳转按钮文案介绍
             'ali_life_id' => '', // 赞助商生活号AppId
             'sponsor_detail' => '', // 赞助商介绍
-            'description' => '', // 福利说明
+            'description' => $activity['description'], // 福利说明
         ];
         $detailInfo['prize_items'] = $this->getPrizeEntities($activity['id']);
         $sponsorEntity = Sponsor::query()->where('id', $activity['sponsor_id'])->first();

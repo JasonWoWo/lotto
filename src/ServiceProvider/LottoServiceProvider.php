@@ -28,7 +28,7 @@ class LottoServiceProvider extends ServiceProvider
             __DIR__.'/../config/config.php' => app()->basePath() . '/config/lotto.php',
         ]);
         $this->commands('command.lotto.migration');
-        $this->commands('command.lotto.drawing');
+        $this->commands('command.lotto.undo');
     }
 
     /**
@@ -54,7 +54,7 @@ class LottoServiceProvider extends ServiceProvider
         $this->app->singleton('command.lotto.migration', function ($app) {
             return new MigrationCommand();
         });
-        $this->app->singleton('command.lotto.drawing', function ($app) {
+        $this->app->singleton('command.lotto.undo', function ($app) {
             return new DrawLottery();
         });
     }
@@ -80,7 +80,7 @@ class LottoServiceProvider extends ServiceProvider
     {
         return [
             'command.lotto.migration',
-            'command.lotto.drawing'
+            'command.lotto.undo'
         ];
     }
 }

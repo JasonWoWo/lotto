@@ -74,6 +74,7 @@ class LottoSetupTables extends Migration
         Schema::create('{{ $lottoRewardRecord }}', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('lotto_activity_id')->nullable(false)->comment('抽奖活动ID')->index('lotto_index');
+            $table->integer('record_id')->nullable(false)->default('0')->comment('抽奖记录的ID');
             $table->integer('project_id')->nullable(false)->comment('奖项ID，对应lotto_prize_config的ID');
             $table->string('project_name', 128)->collation('utf8_unicode_ci')->nullable(false)->default('')->comment('奖项名称');
             $table->integer('prize_id')->nullable(false)->comment('抽奖活动奖品ID');

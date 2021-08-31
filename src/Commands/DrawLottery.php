@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Happy\Lotto\Commands;
 
 use Illuminate\Console\Command;
@@ -12,7 +11,7 @@ class DrawLottery extends Command
      *
      * @var string
      */
-    protected $name = 'lotto:draw';
+    protected $name = 'lotto:undo';
 
     /**
      * The console command description.
