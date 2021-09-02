@@ -140,12 +140,17 @@ class LottoService extends BaseService
         $isSelected = $builderClone->where('uid', $uid)->exists();
         if (!$isSelected) {
             $recordEntity = $builder->orderBy('id', 'ASC')->first();
+            if (is_null($recordEntity)) {
+                $this->status = self::STATUS_TOAST;
+                $this->message = '活动中奖未开奖';
+                return $this->pipeline();
+            }
             $bingo = $recordEntity->toArray();
         } else {
             $bingo = $builder->where('uid', $uid)->first()->toArray();
         }
         if (empty($bingo)) {
-            $this->status = self::STATUS_FAIL;
+            $this->status = self::STATUS_TOAST;
             $this->message = '获取活动中奖详情列表失败';
             return $this->pipeline();
         }
@@ -162,9 +167,16 @@ class LottoService extends BaseService
             $bingoPrize = $rewardEntity->toArray();
         }
         if (empty($bingoPrize)) {
-            $this->status = self::STATUS_FAIL;
+            $this->status = self::STATUS_TOAST;
             $this->message = "未获取活动中奖奖项详情";
             return $this->pipeline();
+        }
+        $virtualRedEnvelop = 0;
+        if ($bingoPrize['prize_type'] == ActivityConfig::PRIZE_TYPE_VIRTUAL) {
+            if ($bingoPrize['virtual_type'] == ActivityConfig::VIRTUAL_RED_ENVELOP && $bingoPrize['virtual_value']) {
+                $redEnvelop = json_decode($bingoPrize['virtual_value'], true);
+                $virtualRedEnvelop = intval($redEnvelop['envelop']);
+            }
         }
 
         $bingoInfo = [
@@ -180,8 +192,8 @@ class LottoService extends BaseService
             'mobile' => $bingoPrize['mobile'],
             'fast_status' => $bingoPrize['fast_status'],
             'is_lucky' => $isSelected ? 1 : 0,
-            'virtual_or_physical' => '',
-            'red_amount' => 0
+            'virtual_or_physical' => $bingoPrize['prize_type'],
+            'red_amount' => $virtualRedEnvelop
         ];
 
         $this->data = $bingoInfo;

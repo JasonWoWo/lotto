@@ -8,6 +8,7 @@ class BaseService
 {
     const STATUS_SUCCESS = 1;
     const STATUS_FAIL = 0;
+    const STATUS_TOAST = -1;
 
     protected $status = self::STATUS_SUCCESS;
 

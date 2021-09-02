@@ -42,7 +42,9 @@ class LottoSetupTables extends Migration
             $table->string('award_desc', 128)->collation('utf8_unicode_ci')->default('')->nullable(false)->comment('奖项名，一等奖，二等奖');
             $table->tinyInteger('show_num')->default('0')->nullable(false)->comment('展示数量');
             $table->tinyInteger('prize_type')->default('1')->nullable(false)->comment('奖品类型 1表示实物，2表示虚拟');
+            $table->tinyInteger('virtual_type')->default('0')->nullable(false)->comment('虚拟奖品需配置，虚拟奖品类型；0表示无，1表示红包，2表示电子消费券');
             $table->string('virtual_label', 128)->collation('utf8_unicode_ci')->default('')->nullable(false)->comment('虚拟奖品的标签');
+            $table->string('virtual_value', 256)->collation('utf8_unicode_ci')->default('')->nullable(false)->comment('虚拟奖品内容');
             $table->integer('sort')->default('0')->nullable(false)->comment('优先级');
             $table->dateTime('create_time')->comment('创建时间')->nullable();
             $table->dateTime('update_time')->comment('更新时间')->nullable();
