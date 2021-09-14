@@ -56,6 +56,7 @@ class LottoSetupTables extends Migration
             $table->increments('id');
             $table->string('name', 128)->collation('utf8_unicode_ci')->nullable(false)->default('')->comment('奖品名称');
             $table->string('image_url', 256)->collation('utf8_unicode_ci')->nullable(false)->default('')->comment('奖品图片地址');
+            $table->integer('product_id')->nullable(false)->default('0')->comment('商品ID');
             $table->integer('sku_id')->nullable(false)->default('0')->comment('奖品单品ID');
             $table->string('sku_name', 128)->collation('utf8_unicode_ci')->nullable(false)->default('')->comment('奖品单品名称');
             $table->dateTime('create_time')->comment('创建时间')->nullable();
@@ -88,8 +89,10 @@ class LottoSetupTables extends Migration
             $table->string('address', 256)->collation('utf8_unicode_ci')->nullable(false)->default('')->comment('地址');
             $table->tinyInteger('award_type')->default('1')->nullable(false)->comment('类型 1表示实物，2表示虚拟');
             $table->integer('award_value')->nullable(false)->default('0')->comment('虚拟中奖金额');
+            $table->string('fast_company', 50)->collation('utf8_unicode_ci')->nullable(false)->default('')->comment('快递公司');
             $table->string('fast_num', 50)->collation('utf8_unicode_ci')->nullable(false)->default('')->comment('实物发货的快递单号');
             $table->tinyInteger('fast_status')->default('0')->nullable(false)->comment('中奖商品发放状态 0表示未发货，1表示已发货');
+            $table->dateTime('delivery_time')->comment('发货时间')->nullable();
             $table->dateTime('create_time')->comment('创建时间')->nullable();
             $table->dateTime('update_time')->comment('更新时间')->nullable();
         });
