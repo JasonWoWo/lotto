@@ -26,11 +26,11 @@ class LottoService extends BaseService
             return $this->pipeline();
         }
         $activities = $activityEntities->toArray();
-        $activityIds = [];
+//        $activityIds = [];
 //        array_walk($activities, function (&$activity) use (&$activityIds) {
 //            $activity = (array)$activity;
 //        });
-        $activityIds[] = array_column($activities, 'id');
+        $activityIds = array_column($activities, 'id');
         // 用户参与活动的Ids
         $participationActivityIds = [];
         if (!is_null($uid)) {
