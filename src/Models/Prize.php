@@ -23,5 +23,5 @@ class Prize extends Model
 
     protected $primaryKey = 'id';
 
-    protected $fillable = ['create_time', 'update_time', 'delete_time', 'name', 'image_url', 'variant_id', 'product_id'];
+    protected $fillable = ['create_time', 'update_time', 'delete_time', 'name', 'image_url'];
 }

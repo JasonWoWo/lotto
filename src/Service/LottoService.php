@@ -125,6 +125,7 @@ class LottoService extends BaseService
             $detailInfo['ali_mini_content'] = $sponsor['content'];
             $detailInfo['ali_mini_turn_text'] = $sponsor['share_text'];
             $detailInfo['sponsor_detail'] = $sponsor['description'];
+            $detailInfo['logo'] = $sponsor['icon_url'];
         }
         $this->data = $detailInfo;
         return $this->pipeline();

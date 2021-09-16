@@ -56,13 +56,13 @@ class LottoSetupTables extends Migration
             $table->increments('id');
             $table->string('name', 128)->collation('utf8_unicode_ci')->nullable(false)->default('')->comment('奖品名称');
             $table->string('image_url', 256)->collation('utf8_unicode_ci')->nullable(false)->default('')->comment('奖品图片地址');
-            $table->integer('product_id')->nullable(false)->default('0')->comment('商品ID');
-            $table->integer('sku_id')->nullable(false)->default('0')->comment('奖品单品ID');
-            $table->string('sku_name', 128)->collation('utf8_unicode_ci')->nullable(false)->default('')->comment('奖品单品名称');
+            //$table->integer('product_id')->nullable(false)->default('0')->comment('商品ID');
+            //$table->integer('variant_id')->nullable(false)->default('0')->comment('奖品单品ID');
+            //$table->string('sku_name', 128)->collation('utf8_unicode_ci')->nullable(false)->default('')->comment('奖品单品名称');
             $table->dateTime('create_time')->comment('创建时间')->nullable();
             $table->dateTime('update_time')->comment('更新时间')->nullable();
             $table->dateTime('delete_time')->comment('删除时间')->nullable();
-            $table->unique(['sku_id'], 'sku_unique_key');
+            //$table->unique(['sku_id'], 'sku_unique_key');
         });
 
         Schema::create('{{ $lottoActivityRecord }}', function (Blueprint $table) {
