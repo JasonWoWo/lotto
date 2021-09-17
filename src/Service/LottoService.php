@@ -112,6 +112,7 @@ class LottoService extends BaseService
             'ali_mini_turn_text' => '', // 阿里小程序跳转按钮文案介绍
             'ali_life_id' => '', // 赞助商生活号AppId
             'sponsor_detail' => '', // 赞助商介绍
+            'self_support' => 0, // 赞助商是否属于自营用户
             'description' => $activity['description'], // 福利说明
         ];
         $detailInfo['prize_items'] = $this->getPrizeEntities($activity['id']);
@@ -125,6 +126,7 @@ class LottoService extends BaseService
             $detailInfo['ali_mini_content'] = $sponsor['content'];
             $detailInfo['ali_mini_turn_text'] = $sponsor['share_text'];
             $detailInfo['sponsor_detail'] = $sponsor['description'];
+            $detailInfo['self_support'] = $sponsor['self_support'];
             $detailInfo['logo'] = $sponsor['icon_url'];
         }
         $this->data = $detailInfo;
