@@ -387,7 +387,7 @@ class LottoService extends BaseService
     {
         $prizeTable = Config::get('lotto.lotto_prize_table');
         return ActivityConfig::query()->leftJoin("$prizeTable as lp", 'prize_id', '=', 'lp.id')
-            ->selectRaw('*')->where('lotto_activity_id', $activityId)->get();
+            ->selectRaw('*')->where('lotto_activity_id', $activityId)->orderByDesc('sort')->orderByDesc('show_num')->get();
     }
 
     private function getPrivacyInfo($name)
