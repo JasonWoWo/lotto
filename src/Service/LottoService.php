@@ -137,8 +137,9 @@ class LottoService extends BaseService
     public function getActivitySummary($activityId, $uid)
     {
         // todo 判断$uid用户是否中奖，如果未中奖则返回第一个中奖人的信息
-        $builder = ActivityRecord::query()->where('lotto_activity_id', $activityId)
-            ->where('status', ActivityRecord::STATUS_SELECTED);
+//        $builder = ActivityRecord::query()->where('lotto_activity_id', $activityId)
+//            ->where('status', ActivityRecord::STATUS_SELECTED);
+        $builder = RewardRecord::query()->where('lotto_activity_id', $activityId);
         $builderClone = clone $builder;
         $isSelected = $builderClone->where('uid', $uid)->exists();
         if (!$isSelected) {
